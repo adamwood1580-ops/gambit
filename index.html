@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0a1112">
+  <meta name="description" content="Gambit (GAM) on BNB Smart Chain. Explore the token design, allocation model and presale development status.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Gambit (GAM) | Token Presale Preview">
+  <meta property="og:description" content="Gambit on BNB Smart Chain. Information and testnet-ready wallet interface. Public sales are not yet available.">
+  <title>Gambit (GAM) — Presale Preview</title>
+  <link rel="icon" type="image/svg+xml" href="./assets/icons/favicon.svg">
+  <link rel="stylesheet" href="./assets/css/styles.css">
+  <script src="./assets/js/config.js" defer></script>
+  <script src="./assets/js/logic.js" defer></script>
+  <script src="./assets/js/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="site-shell">
+    <header class="header container">
+      <a class="brand" href="#top" aria-label="Gambit home">
+        <span class="brand-icon" aria-hidden="true"><svg viewBox="0 0 50 50" fill="none"><path d="M25 2 45.5 13.5v23L25 48 4.5 36.5v-23L25 2Z" stroke="currentColor" stroke-width="1.8"/><path d="M34.1 19.5a12 12 0 1 0 1.3 11.5H25v-5h16" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="brand-text">GAMBIT<span class="brand-mark">.</span><small>THE GAM TOKEN</small></span>
+      </a>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="#about">About</a><a href="#tokenomics">Tokenomics</a><a href="#roadmap">Roadmap</a><a href="#faq">FAQ</a>
+      </nav>
+      <button id="headerConnect" class="btn btn-outline btn-sm" type="button"><span class="connect-indicator" aria-hidden="true"></span><span id="headerConnectText">Connect wallet</span></button>
+      <button id="navToggle" class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
+    </header>
+    <nav id="mobileNav" class="mobile-nav container" aria-label="Mobile navigation" hidden>
+      <a href="#about">About Gambit</a><a href="#tokenomics">Tokenomics</a><a href="#roadmap">Roadmap</a><a href="#faq">FAQs</a>
+    </nav>
+
+    <main id="main">
+      <section class="hero container" id="top" aria-labelledby="heroTitle">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="eyebrow-dot"></span> BUILT ON BNB SMART CHAIN <span class="line"></span> GAM</div>
+          <div class="preview-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5m0 4h.01"/></svg> PRE-LAUNCH PREVIEW · NO LIVE SALE</div>
+          <h1 id="heroTitle">Your next move <em>starts here.</em></h1>
+          <p class="hero-lede">Introducing <strong>Gambit (GAM)</strong> — a fixed-supply token on BNB Smart Chain. Explore the token design and track the upcoming presale.</p>
+          <div class="hero-actions"><a class="btn btn-primary" href="#purchase">Explore the presale <span aria-hidden="true">↗</span></a><a class="text-link" href="#tokenomics">View tokenomics <span aria-hidden="true">→</span></a></div>
+          <div class="hero-facts"><div><span>100T</span><small>INITIAL SUPPLY</small></div><div class="fact-divider"></div><div><span>2%</span><small>BUY TO REWARDS</small></div><div class="fact-divider"></div><div><span>2%</span><small>SELL BURN</small></div></div>
+        </div>
+
+        <div class="purchase-wrap" id="purchase">
+          <div class="halo halo-one" aria-hidden="true"></div><div class="halo halo-two" aria-hidden="true"></div>
+          <section class="purchase-card" aria-labelledby="purchaseTitle">
+            <div class="card-topline"><span class="live-dot"></span><span id="saleStatus" class="card-kicker">SALE NOT OPEN</span><span class="card-stage">01 / PRESALE</span></div>
+            <h2 id="purchaseTitle">The countdown <span>begins.</span></h2>
+            <p class="muted card-sub" id="launchLabel">Launch date to be announced</p>
+            <div class="countdown" role="timer" aria-label="Time remaining until announced launch">
+              <div class="time-block"><strong id="days">--</strong><span>DAYS</span></div><div class="time-block"><strong id="hours">--</strong><span>HOURS</span></div><div class="time-block"><strong id="minutes">--</strong><span>MINS</span></div><div class="time-block"><strong id="seconds">--</strong><span>SECS</span></div>
+            </div>
+            <div class="purchase-divider"><span>PRESALE CALCULATOR</span></div>
+            <div class="field-header"><label for="bnbAmount">You contribute</label><span id="balanceText">Wallet not connected</span></div>
+            <div class="amount-field"><input id="bnbAmount" name="bnbAmount" type="text" inputmode="decimal" autocomplete="off" placeholder="0.00" aria-describedby="bnbHint" value="0.10" maxlength="36"><span class="coin-tag"><span class="bnb-glyph">◆</span><span id="bnbSymbol">tBNB</span></span></div>
+            <p class="small-hint" id="bnbHint">BNB Smart Chain native currency</p>
+            <div class="field-meta"><span>Indicative USD equivalent</span><strong id="usdAmount">Checking market price…</strong></div>
+            <div class="field-meta price-meta"><span>BNB/USD reference rate</span><span id="usdRate">Fetching…</span></div>
+            <div class="quote-panel"><div><span>Estimated GAM tokens</span><strong id="gamEstimate">—</strong></div><small id="quoteInfo">Available after a sale contract is configured and your wallet is connected.</small></div>
+            <div class="sale-info" id="saleInfo" role="status" aria-live="polite">Preview mode: wallet connection is available, but no purchase can be submitted.</div>
+            <div class="contract-status" id="contractStatus"><span>Sale contract</span><span id="saleContractDisplay">Not deployed</span></div>
+            <button id="purchaseButton" class="btn btn-primary btn-full" disabled type="button">Presale not live</button>
+            <button id="cardConnect" class="btn btn-ghost btn-full" type="button">Connect a wallet</button>
+            <button id="switchNetwork" class="btn btn-outline btn-full hidden" type="button">Switch to BNB network</button>
+            <p class="security-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m12 2 8 4v6c0 5-3.3 8.5-8 10-4.7-1.5-8-5-8-10V6l8-4Z"/><path d="m9 12 2 2 4-4"/></svg> Payments will only be possible through a verified sale contract. Never send BNB to a wallet address directly.</p>
+          </section>
+        </div>
+      </section>
+
+      <div class="marquee-border"><div class="container ticker"><span>BNB SMART CHAIN</span><i>✧</i><span>FIXED INITIAL SUPPLY</span><i>✧</i><span>TRANSPARENT ALLOCATIONS</span><i>✧</i><span>COMMUNITY REWARDS</span><i>✧</i><span>SUPPLY-REDUCING BURNS</span></div></div>
+
+      <section id="about" class="section container about-section"><div class="section-heading"><span class="section-num">01 — THE TOKEN</span><h2>Built with a <em>clear structure.</em></h2><p>GAM is designed as a BNB Smart Chain token with a transparent fixed issuance and no additional minting. Its trading taxes are part of the token mechanism, not a promise of return.</p></div><div class="feature-grid">
+        <article class="feature"><div class="feature-icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 3 28 10v12L16 29 4 22V10L16 3Z"/><path d="m4 10 12 7 12-7M16 17v12"/></svg></div><h3>Fixed issuance</h3><p>100 trillion GAM at deployment, with no future minting in the planned core token contract.</p></article>
+        <article class="feature"><div class="feature-icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 3v26M5 9h22M5 23h22"/><path d="M9 16h14"/></svg></div><h3>Community allocation</h3><p>35% initially designated for community rewards, with buy-side GAM fees directed to the community rewards wallet.</p></article>
+        <article class="feature"><div class="feature-icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 7h16v7l-8 5-8-5V7Zm0 0-2-4m18 4 2-4M10 25c0-4 3-5 6-6 3 1 6 2 6 6l-6 4-6-4Z"/></svg></div><h3>True token burns</h3><p>A 2% sell-side fee is designed to permanently destroy GAM, reducing its on-chain total supply.</p></article>
+      </div></section>
+
+      <section id="tokenomics" class="section container tokenomics-section"><div class="section-heading"><span class="section-num">02 — THE ALLOCATION</span><h2>Every token <em>accounted for.</em></h2><p>The agreed initial allocation model totals 100% of the 100 trillion GAM supply. A presale allocation must be carved out of the existing categories before live sales.</p></div>
+      <div class="tokenomics-layout"><div class="supply-card"><span class="label-small">TOTAL INITIAL SUPPLY</span><div class="supply-number">100,000,000,000,000</div><div class="supply-unit">GAM <span>· 18 decimals</span></div><div class="allocation-bar" role="img" aria-label="Community rewards 35%, liquidity 25%, development 15%, team 10%, marketing 10%, reserve 5%"><span style="--pct:35;--clr:#d9b77b"></span><span style="--pct:25;--clr:#4f9982"></span><span style="--pct:15;--clr:#7d8e9b"></span><span style="--pct:10;--clr:#9076a8"></span><span style="--pct:10;--clr:#c7765f"></span><span style="--pct:5;--clr:#677674"></span></div><div class="allocation-legend"><div><i style="--clr:#d9b77b"></i>Community rewards <strong>35%</strong></div><div><i style="--clr:#4f9982"></i>Liquidity <strong>25%</strong></div><div><i style="--clr:#7d8e9b"></i>Development & ecosystem <strong>15%</strong></div><div><i style="--clr:#9076a8"></i>Team (vesting) <strong>10%</strong></div><div><i style="--clr:#c7765f"></i>Marketing & partnerships <strong>10%</strong></div><div><i style="--clr:#677674"></i>Treasury reserve <strong>5%</strong></div></div></div>
+      <div class="token-rules"><div class="rule"><span>01</span><div><strong>2% on qualifying buys</strong><p>Collected in GAM and directed to the community rewards wallet.</p></div></div><div class="rule"><span>02</span><div><strong>2% on qualifying sells</strong><p>Burned permanently; total GAM supply declines with those burns.</p></div></div><div class="rule"><span>03</span><div><strong>Team vesting</strong><p>10% team allocation with a 12-period cliff and 24 subsequent releases. Fixed-length periods, not calendar months.</p></div></div><div class="rule"><span>04</span><div><strong>Normal wallet transfers</strong><p>No transfer tax under the planned V2-pair classification approach.</p></div></div></div></div></section>
+
+      <section id="roadmap" class="section roadmap-section"><div class="container"><div class="section-heading"><span class="section-num">03 — WHAT'S NEXT</span><h2>A staged <em>approach.</em></h2><p>Development milestones, not launch guarantees. Live offerings and future gaming functionality remain dependent on appropriate approvals.</p></div><div class="roadmap-grid"><article class="roadmap-step"><span class="roadmap-index">01</span><span class="step-status">IN DEVELOPMENT</span><h3>Token & vesting</h3><p>Compile, test, audit and deploy the core GAM token and vesting contracts.</p></article><article class="roadmap-step"><span class="roadmap-index">02</span><span class="step-status">PLANNED</span><h3>Presale readiness</h3><p>Set final terms, compliance processes, airdrop mechanics and reviewed presale contracts.</p></article><article class="roadmap-step"><span class="roadmap-index">03</span><span class="step-status">PLANNED</span><h3>Community platform</h3><p>Build wallet-linked member accounts and transparent community reporting.</p></article><article class="roadmap-step"><span class="roadmap-index">04</span><span class="step-status">SUBJECT TO LICENSING</span><h3>Gaming roadmap</h3><p>Explore independently tested games and Angel Vault concepts only under applicable licensing.</p></article></div></div></section>
+
+      <section id="faq" class="section container faq-section"><div class="section-heading"><span class="section-num">04 — GOOD TO KNOW</span><h2>Questions, <em>answered.</em></h2></div><div class="faq-list"><details><summary>Can I buy GAM right now?<span aria-hidden="true">+</span></summary><p>No. This is a prelaunch development preview. The site permits wallet connection and illustrative BNB-to-USD conversion, but all transactions are disabled until the sale contract, launch terms and required compliance steps are in place.</p></details><details><summary>How does the USD calculator work?<span aria-hidden="true">+</span></summary><p>The page requests a public BNB/USD market rate and multiplies it by your entered BNB amount. This is indicative, may be delayed, and is not a GAM sale price or a guaranteed exchange rate. The final GAM amount will be quoted by the sale smart contract once deployed.</p></details><details><summary>Does a wallet connection transfer my funds?<span aria-hidden="true">+</span></summary><p>No. Connecting only allows the site to request your public account address and network. Any future purchase will require a separate wallet transaction confirmation, and the presale contract must be verified first. Never share a seed phrase.</p></details><details><summary>How does the 2% trading tax work?<span aria-hidden="true">+</span></summary><p>In the planned GAM token, qualifying trades through registered V2 liquidity pairs incur 2% on buys to rewards, or 2% on sells as a true burn. Other transaction routes may not be classified; fees can also apply to liquidity interactions. The presale contract itself is separate from DEX trading.</p></details><details><summary>Will casino games or Angel Vault be available at launch?<span aria-hidden="true">+</span></summary><p>No gaming launch is being offered or promised. Any future casino or prize-based feature would depend on licensing, approved game mechanics and separate terms. A token purchase does not currently grant access to games or enhanced returns.</p></details></div></section>
+
+      <section class="disclosure container" id="risk"><div class="risk-icon">!</div><div><h2>Important risk information</h2><p>Cryptoassets are high risk. You could lose all the money you put in. Prices can be volatile, tokens may have limited liquidity, and smart contracts can contain defects. The site is a development preview, not a live offer to buy or an approved UK financial promotion. It must undergo jurisdiction-specific legal review, and additional disclosure, onboarding and consumer-protection steps may be required before public sale.</p></div></section>
+    </main>
+    <footer class="footer"><div class="container footer-inner"><div class="footer-brand"><span class="brand-footer">GAMBIT<span>.</span></span><small>GAM · BNB SMART CHAIN</small></div><div class="footer-links"><a href="#tokenomics">Tokenomics</a><a href="#roadmap">Roadmap</a><a href="#risk">Risk information</a><a href="https://docs.bnbchain.org/" target="_blank" rel="noopener noreferrer">BNB Chain ↗</a></div><p>© <span id="year"></span> Gambit. Development preview only. No sale currently active.</p></div></footer>
+  </div>
+
+  <dialog id="walletDialog" class="wallet-dialog" aria-labelledby="walletDialogTitle"><form method="dialog"><button class="dialog-close" aria-label="Close wallet selection">×</button></form><div class="dialog-icon">◈</div><h2 id="walletDialogTitle">Connect your wallet</h2><p>Choose an available BSC-compatible wallet. Connection alone does not authorise payment.</p><div id="walletList" class="wallet-list"></div><a class="mobile-wallet-link" id="mobileWalletLink" href="#" target="_self" rel="noopener">Open this page in MetaMask mobile ↗</a><p class="dialog-footnote">Only connect wallets you control. Never enter a recovery phrase into a website.</p></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
