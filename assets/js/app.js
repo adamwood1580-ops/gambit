@@ -11,7 +11,7 @@
   const M = window.GambitMath;
   if (!C || !M) { console.error('Gambit configuration or logic missing.'); return; }
 
-  // 4-byte Keccak-256 selectors of the expected independent presale contract ABI.
+  // 4-byte Keccak-256 selectors of GambitPresale public interface.
   // Derivations verified against Keccak-256 of the canonical function signatures.
   const ABI = Object.freeze({quoteTokens: '0x2c9115c7', buyTokens: '0x3610724e', isSaleOpen: '0x1a081330'});
   const $ = (id) => document.getElementById(id);
@@ -40,6 +40,8 @@
     if (amount === null || amount === 0n) return 'Enter a valid amount greater than zero.';
     if (amount < M.toWei(C.sale.minBNB)) return `Minimum is ${C.sale.minBNB} ${C.network.nativeCurrency.symbol}.`;
     if (amount > M.toWei(C.sale.maxBNB)) return `Maximum is ${C.sale.maxBNB} ${C.network.nativeCurrency.symbol}.`;
+    const usd = rateIsFresh() ? M.bnBtoUsd($('bnbAmount').value, state.usdRate) : null;
+    if (usd !== null && usd > C.sale.capUsdPerWallet) return 'Amount exceeds $1,000 USD wallet limit.';
     return null;
   }
   function renderCountdown() {
@@ -56,11 +58,26 @@
     }
     renderSaleStatus();
   }
+  function formatEstimatedGam(usd) {
+    if (usd === null || !Number.isFinite(C.sale.priceUsd) || C.sale.priceUsd <= 0) return '—';
+    const estimated = usd / C.sale.priceUsd;
+    return Number.isFinite(estimated) ? estimated.toLocaleString('en-US', {maximumFractionDigits: 2}) + ' GAM' : '—';
+  }
   function renderPrice() {
     const input = $('bnbAmount').value;
     const usd = rateIsFresh() ? M.bnBtoUsd(input, state.usdRate) : null;
     $('usdAmount').textContent = usd === null ? 'Market rate unavailable' :
       '≈ ' + usd.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});
+    if (state.quote === null) {
+      $('gamEstimate').textContent = formatEstimatedGam(usd);
+      $('quoteLabel').textContent = 'Indicative GAM tokens';
+    }
+    const warning = $('walletCapNotice');
+    if (warning) {
+      warning.textContent = usd !== null && usd > C.sale.capUsdPerWallet
+        ? `This amount exceeds the $${C.sale.capUsdPerWallet.toLocaleString('en-US')} USD wallet limit. Reduce it before purchasing. Previous contributions also count.`
+        : `Maximum $${C.sale.capUsdPerWallet.toLocaleString('en-US')} USD-equivalent per wallet across all purchases. The contract enforces the cap; no person-level checks.`;
+    }
     $('usdRate').textContent = rateIsFresh() ?
       `1 BNB ≈ $${state.usdRate.toLocaleString('en-US', {maximumFractionDigits: 2})} · ${state.priceSource}` :
       'Unavailable · try again later';
@@ -122,9 +139,11 @@
   }
 
   function updateEstimate(message = '') {
-    $('gamEstimate').textContent = state.quote !== null ? M.formatUnits(state.quote, 18, 4) + ' GAM' : '—';
+    $('quoteLabel').textContent = state.quote !== null ? 'On-chain GAM quotation' : 'Indicative GAM tokens';
+    const usd = rateIsFresh() ? M.bnBtoUsd($('bnbAmount').value, state.usdRate) : null;
+    $('gamEstimate').textContent = state.quote !== null ? M.formatUnits(state.quote, 18, 4) + ' GAM' : formatEstimatedGam(usd);
     $('quoteInfo').textContent = message || (state.quote === null ?
-      'GAM quotation will come directly from the deployed sale contract, not the USD calculator.' :
+      'USD price estimate only; final quotation will come directly from the sale contract.' :
       'Live contract quotation, subject to change before confirmation and on-chain limits.');
     renderSaleStatus();
   }
@@ -330,6 +349,8 @@
     });
     $('mobileNav').querySelectorAll('a').forEach(a => a.addEventListener('click', () => { $('mobileNav').hidden = true; $('navToggle').setAttribute('aria-expanded', 'false'); }));
     document.addEventListener('visibilitychange', () => { if (!document.hidden) { renderCountdown(); if (!rateIsFresh()) fetchRate(); } });
+    if ($('gamUnitPrice')) $('gamUnitPrice').innerHTML = '$' + String(C.sale.priceUsd) + ' <small>USD / GAM</small>';
+    if ($('gamPerUsd')) $('gamPerUsd').textContent = '$1 ≈ ' + (1 / C.sale.priceUsd).toLocaleString('en-US') + ' GAM';
     initWalletDiscovery(); renderCountdown(); renderPrice(); updateEstimate(); fetchRate();
     setInterval(renderCountdown, 1000);
     setInterval(fetchRate, Number(C.rates.refreshMs) || 60000);

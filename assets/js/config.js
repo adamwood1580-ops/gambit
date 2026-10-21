@@ -43,9 +43,12 @@ window.GAMBIT_CONFIG = Object.freeze({
     active: false, // Set true only after all independent conditions below are satisfied.
     legalSignoff: false, // Administrative publication switch, NOT regulatory enforcement.
     allowMainnet: false, // Explicit extra precaution for live-value transactions.
+    priceUsd: 0.0001, // INDICATIVE only; on-chain contract fixes the price
+    presaleAllocationGam: "10000000000000", // 10 trillion out of community 35%
+    capUsdPerWallet: 1000, // on-chain enforced cumulative cap per address
     slippageBps: 100, // Maximum 1% difference from fresh on-chain quotation.
     minBNB: '0.001',
-    maxBNB: '100',
+    maxBNB: '100', // bound on input only; $1000 cap is enforced on-chain
     // ABI expected by the web client:
     //   quoteTokens(uint256 bnbWei) view returns(uint256 gamRaw)
     //   isSaleOpen() view returns(bool)
